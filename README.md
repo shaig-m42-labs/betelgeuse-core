@@ -1,60 +1,27 @@
 # betelgeuse-core
-Core reliability domain service for managing services, incidents, deployments, dependencies, and operational workflows.
 
-**Language:** ```Java```
-**Stack:** ```Stack: Spring Boot, PostgreSQL, Flyway, Redis, NATS publisher.```
+Core reliability domain service for Orion Platform V1.
 
-**Domain:**
-```
-Organization
-Team
-Service
-Environment
-ServiceDependency
-HealthCheckConfig
-Deployment
-Incident
-IncidentTimeline
-Runbook
-SLO
-AlertRule
-WebhookSubscription
-AuditLog
-```
+## V1 Domain
 
-**Main features:**
-```
-Create organization/team
-Register backend service
-Define environments: dev/staging/prod
-Add service dependencies
-Create deployment record
-Create incident manually
-Auto-open incident from health failure event
-Attach runbook to incident
-Resolve incident
-Track incident timeline
-Publish domain events
-```
+- Organizations
+- Teams
+- Services
+- Environments
+- Health check configs
+- Incidents
+- Incident timeline
 
-**Core service event should publish:**
-```
-service.registered
-deployment.created
-deployment.failed
-incident.opened
-incident.resolved
-healthcheck.failed
-runbook.attached
-```
+## Endpoints
 
-**Must Have Patterns:**
-```
-Specification pattern
-Policy classes
-State transition validator
-Outbox pattern
-Domain events
-Audit logging
-Idempotency for important commands
-```
+- `POST /organizations`, `GET /organizations`
+- `POST /teams`, `GET /teams`
+- `POST /services`, `GET /services`, `GET /services/{id}`
+- `POST /services/{id}/environments`
+- `POST /services/{id}/health-checks`
+- `GET /internal/health-checks/active`
+- `POST /incidents`, `GET /incidents`, `GET /incidents/{id}`
+- `PATCH /incidents/{id}/resolve`
+- `POST /incidents/{id}/timeline`
+
+Core owns incident creation and duplicate prevention.
