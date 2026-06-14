@@ -2,7 +2,7 @@
 Core reliability domain service for managing services, incidents, deployments, dependencies, and operational workflows.
 
 **Language:** ```Java```
-**Stack:** ```Spring Boot, Spring Security, PostgreSQL, Redis, JWT.```
+**Stack:** ```Stack: Spring Boot, PostgreSQL, Flyway, Redis, NATS publisher.```
 
 **Domain:**
 ```
