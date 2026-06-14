@@ -47,17 +47,17 @@ class CoreController {
     }
 
     @GetMapping("/services/{id}")
-    ApiResponse<BackendService> service(@PathVariable UUID id, HttpServletRequest servlet) {
+    ApiResponse<BackendService> service(@PathVariable("id") UUID id, HttpServletRequest servlet) {
         return ok(core.service(id), servlet);
     }
 
     @PostMapping("/services/{id}/environments")
-    ApiResponse<Environment> createEnvironment(@PathVariable UUID id, @Valid @RequestBody CreateEnvironmentRequest request, HttpServletRequest servlet) {
+    ApiResponse<Environment> createEnvironment(@PathVariable("id") UUID id, @Valid @RequestBody CreateEnvironmentRequest request, HttpServletRequest servlet) {
         return ok(core.createEnvironment(id, request), servlet);
     }
 
     @PostMapping("/services/{id}/health-checks")
-    ApiResponse<HealthCheckConfig> createHealthCheck(@PathVariable UUID id, @Valid @RequestBody CreateHealthCheckRequest request, HttpServletRequest servlet) {
+    ApiResponse<HealthCheckConfig> createHealthCheck(@PathVariable("id") UUID id, @Valid @RequestBody CreateHealthCheckRequest request, HttpServletRequest servlet) {
         return ok(core.createHealthCheck(id, request), servlet);
     }
 
@@ -88,17 +88,17 @@ class CoreController {
     }
 
     @GetMapping("/incidents/{id}")
-    ApiResponse<Incident> incident(@PathVariable UUID id, HttpServletRequest servlet) {
+    ApiResponse<Incident> incident(@PathVariable("id") UUID id, HttpServletRequest servlet) {
         return ok(core.incident(id), servlet);
     }
 
     @PatchMapping("/incidents/{id}/resolve")
-    ApiResponse<Incident> resolve(@PathVariable UUID id, HttpServletRequest servlet) {
+    ApiResponse<Incident> resolve(@PathVariable("id") UUID id, HttpServletRequest servlet) {
         return ok(core.resolve(id, correlation(servlet)), servlet);
     }
 
     @PostMapping("/incidents/{id}/timeline")
-    ApiResponse<IncidentTimeline> timeline(@PathVariable UUID id, @Valid @RequestBody AddTimelineRequest request, HttpServletRequest servlet) {
+    ApiResponse<IncidentTimeline> timeline(@PathVariable("id") UUID id, @Valid @RequestBody AddTimelineRequest request, HttpServletRequest servlet) {
         return ok(core.addTimeline(id, request), servlet);
     }
 
